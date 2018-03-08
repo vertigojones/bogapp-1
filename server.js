@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 const creatureController = require('./controllers/creatureController')
-app.use('api/creatures', creatureController)
+app.use('/api/creatures', creatureController)
 
 // set up port
 const PORT = process.env.PORT || 3001;
