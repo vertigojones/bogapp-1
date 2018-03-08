@@ -22,13 +22,18 @@ db.on("open", () => {
 // middleware
 app.use(logger("dev"));
 app.use(bodyParser.json());
+app.use(express.static(`${__dirname}/client/build`))
 
 // set up routes
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-const creatureController = require('./controllers/creatureController')
-app.use('/api/creatures', creatureController)
+const creatureController = require("./controllers/creatureController");
+app.use("/api/creatures", creatureController);
+
+app.get("/*", (req, res) => {
+  res.sendFile(`${__dirname}/client/build/index.html`);
+});
 
 // set up port
 const PORT = process.env.PORT || 3001;
